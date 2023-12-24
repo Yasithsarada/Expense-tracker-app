@@ -67,7 +67,7 @@ class _NewExpenseState extends State<NewExpense> {
                   children: [
                     Text(_pickedDate == null
                         ? "Select Date"
-                        : dateFormatter.format(_pickedDate!)),
+                        : dateFormatter.format(_pickedDate)),
                     IconButton(
                         onPressed: _presentDatePicker,
                         icon: Icon(Icons.calendar_month))
