@@ -65,6 +65,7 @@ class _ExpensesState extends State<Expenses> {
 
   @override
   Widget build(BuildContext context) {
+    var avlbleWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(actions: [
         IconButton(
@@ -74,20 +75,35 @@ class _ExpensesState extends State<Expenses> {
       ], title: const Text("Flutter Expense Tracker")),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 4),
-        child: Column(
-          children: [
-            Chart(expenses: _registeredExpenses),
-            const SizedBox(
-              height: 10,
-            ),
-            Expanded(
-              child: ExpenseList(
-                removeExpense: removeExpense,
-                expenses: _registeredExpenses,
+        child: avlbleWidth < 600
+            ? Column(
+                children: [
+                  Chart(expenses: _registeredExpenses),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Expanded(
+                    child: ExpenseList(
+                      removeExpense: removeExpense,
+                      expenses: _registeredExpenses,
+                    ),
+                  ),
+                ],
+              )
+            : Row(
+                children: [
+                  Expanded(child: Chart(expenses: _registeredExpenses)),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Expanded(
+                    child: ExpenseList(
+                      removeExpense: removeExpense,
+                      expenses: _registeredExpenses,
+                    ),
+                  ),
+                ],
               ),
-            ),
-          ],
-        ),
       ),
     );
   }
